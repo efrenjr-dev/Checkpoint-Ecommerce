@@ -1,0 +1,17 @@
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+}
+
+.nav-item {
+    color: #efa243;
+}
+
+.nav-tabs {
+    margin-bottom: 0 !important;
+}
+
+// bootstrap always on bottom
+@import "bootstrap/dist/css/bootstrap.min.css";
