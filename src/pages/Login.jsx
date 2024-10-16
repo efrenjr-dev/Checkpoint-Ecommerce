@@ -2,12 +2,12 @@ import { useState, useEffect, useContext } from "react";
 import { Row, Col, Form, Button, Tab, Tabs } from "react-bootstrap";
 import Swal from "sweetalert2";
 import UserContext from "../userContext";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const { user, setUser } = useContext(UserContext);
     // console.log(user);
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isActive, setIsActive] = useState(false);
@@ -84,7 +84,7 @@ export default function Login() {
                                 id: data._id,
                                 isAdmin: data.isAdmin,
                             });
-                            redirect("/");
+                            navigate("/");
                         });
                 } else {
                     Swal.fire({

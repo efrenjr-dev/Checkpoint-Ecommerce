@@ -24,7 +24,7 @@ export default function AppNavBar() {
 
     return (
         <Navbar bg="warning" expand="lg">
-            <Navbar.Brand as={Link} to="/">
+            <Navbar.Brand as={Link} to="/" className={styles.brand}>
                 <FontAwesomeIcon
                     className={styles.fontawesomeicon}
                     icon={faClipboardCheck}

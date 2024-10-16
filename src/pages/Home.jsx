@@ -7,6 +7,7 @@ import {
     faClipboardCheck,
     faListCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Home.module.css";
 
 export default function Home() {
     // const {user} = useContext(UserContext);
@@ -46,8 +47,11 @@ export default function Home() {
         </Row>
     ) : (
         <Container>
-            <h1 className="my-5 text-center">
-                <FontAwesomeIcon icon={faClipboardCheck} />
+            <h1 className="my-5 text-center brand">
+                <FontAwesomeIcon
+                    className={styles.fontawesomeicon}
+                    icon={faClipboardCheck}
+                />
                 Checkpoint
             </h1>
             <h2 className="my-5 text-center">Featured Products</h2>

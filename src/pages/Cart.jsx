@@ -79,10 +79,7 @@ export default function Cart() {
                                         addOne(product.id);
                                     }}
                                 >
-                                    <FontAwesomeIcon
-                                        className={styles.fontawesomeicon}
-                                        icon={faPlus}
-                                    />
+                                    <FontAwesomeIcon icon={faPlus} />
                                 </Button>
                                 <Button
                                     variant="outline-secondary"
@@ -91,10 +88,7 @@ export default function Cart() {
                                         removeOne(product.id, product.quantity);
                                     }}
                                 >
-                                    <FontAwesomeIcon
-                                        className={styles.fontawesomeicon}
-                                        icon={faMinus}
-                                    />
+                                    <FontAwesomeIcon icon={faMinus} />
                                 </Button>
                             </td>
                             <td className="text-right">
@@ -112,10 +106,7 @@ export default function Cart() {
                                     }}
                                 >
                                     {/*<i class="fas fa-cart-arrow-down"></i>*/}
-                                    <FontAwesomeIcon
-                                        className={styles.fontawesomeicon}
-                                        icon={faTrashAlt}
-                                    />
+                                    <FontAwesomeIcon icon={faTrashAlt} />
                                 </Button>
                             </td>
                         </tr>
@@ -262,19 +253,13 @@ export default function Cart() {
                             checkout();
                         }}
                     >
-                        <FontAwesomeIcon
-                            className={styles.fontawesomeicon}
-                            icon={faSignInAlt}
-                        />
+                        <FontAwesomeIcon icon={faSignInAlt} />
                         Check Out
                     </Button>
                 </>
             ) : (
                 <h3 className="text-center">
-                    <FontAwesomeIcon
-                        className={styles.fontawesomeicon}
-                        icon={faFrown}
-                    />
+                    <FontAwesomeIcon icon={faFrown} />
                 </h3>
             )}
         </>

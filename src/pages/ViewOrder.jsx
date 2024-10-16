@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import SoldProduct from "../components/SoldProduct";
 // import UserContext from '../userContext'
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFrown } from "@fortawesome/free-solid-svg-icons";
 
 export default function ViewOrder() {
     const orderId = useParams().orderId;
@@ -38,9 +40,9 @@ export default function ViewOrder() {
                     })
                 );
             });
-    }, []);
+    }, [order, products]);
 
-    return (
+    return products.length > 0 ? (
         <>
             <h3 className="my-5 text-center">Order #{orderId}</h3>
             <Row className="justify-content-center">
@@ -59,5 +61,10 @@ export default function ViewOrder() {
             </Row>
             {products}
         </>
+    ) : (
+        <h3 className="text-center py-5">
+            <FontAwesomeIcon icon={faFrown} />
+            Order not found.
+        </h3>
     );
 }
