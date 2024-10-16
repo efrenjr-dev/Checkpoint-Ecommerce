@@ -6,6 +6,7 @@ import UserContext from "../userContext";
 import { add, total, list } from "cart-localstorage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import styles from "./ViewProduct.module.css";
 
 export default function ViewProduct() {
     const { productId } = useParams();
@@ -137,7 +138,7 @@ export default function ViewProduct() {
                         </Card.Text>
                         {user.isAdmin === false ? (
                             <Form onSubmit={(e) => addToCart(e)}>
-                                <Form.Group className="mb-3">
+                                <Form.Group className="pb-3">
                                     <Form.Label>Quantity</Form.Label>
                                     <Form.Control
                                         type="number"
