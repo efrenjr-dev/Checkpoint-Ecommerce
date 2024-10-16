@@ -12,14 +12,11 @@ export default function Root() {
     });
 
     useEffect(() => {
-        fetch(
-            "https://capstone2-ecommerce-api-nizn.onrender.com/users/getUserDetails",
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            }
-        )
+        fetch(import.meta.env.VITE_API_URL + "/users/getUserDetails", {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data)

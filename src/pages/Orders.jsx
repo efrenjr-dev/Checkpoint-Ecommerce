@@ -14,16 +14,11 @@ export default function Orders() {
     useEffect(() => {
         if (!user.isAdmin) {
             setLoading(true);
-            fetch(
-                "https://capstone2-ecommerce-api-nizn.onrender.com/users/myOrders",
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            )
+            fetch(import.meta.env.VITE_API_URL + "/users/myOrders", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
                 .then((res) => res.json())
                 .then((data) => {
                     setLoading(false);
@@ -82,16 +77,11 @@ export default function Orders() {
         if (user.isAdmin) {
             setLoading(true);
 
-            fetch(
-                "https://capstone2-ecommerce-api-nizn.onrender.com/users/allOrders",
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            )
+            fetch(import.meta.env.VITE_API_URL + "/users/allOrders", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
                 .then((res) => res.json())
                 .then((data) => {
                     setLoading(false);

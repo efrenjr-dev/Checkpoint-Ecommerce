@@ -34,7 +34,7 @@ export default function AddProduct() {
         console.log(description);
         console.log(price);
 
-        fetch("https://capstone2-ecommerce-api-nizn.onrender.com/products", {
+        fetch(import.meta.env.VITE_API_URL + "/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -82,7 +82,7 @@ export default function AddProduct() {
                 <Col xs md="6">
                     <h1 className="my-5 text-center">Add Product</h1>
                     <Form onSubmit={(e) => addProduct(e)}>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Product Name:</Form.Label>
                             <Form.Control
                                 type="text"
@@ -94,7 +94,7 @@ export default function AddProduct() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Description:</Form.Label>
                             <Form.Control
                                 type="text"
@@ -106,7 +106,7 @@ export default function AddProduct() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Price (PHP):</Form.Label>
                             <Form.Control
                                 type="number"

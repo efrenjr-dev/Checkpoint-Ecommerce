@@ -34,7 +34,7 @@ export default function Login() {
         if (user.id) {
             redirect("/");
         }
-    }, []);
+    }, [user]);
 
     function loginUser(e) {
         e.preventDefault();
@@ -42,7 +42,7 @@ export default function Login() {
         console.log(email);
         console.log(password);
 
-        fetch("https://capstone2-ecommerce-api-nizn.onrender.com/users/login", {
+        fetch(import.meta.env.VITE_API_URL + "/users/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -70,7 +70,7 @@ export default function Login() {
                     localStorage.setItem("token", data.accessToken);
 
                     fetch(
-                        "https://capstone2-ecommerce-api-nizn.onrender.com/users/getUserDetails",
+                        import.meta.env.VITE_API_URL + "/users/getUserDetails",
                         {
                             headers: {
                                 Authorization: `Bearer ${data.accessToken}`,
@@ -84,6 +84,7 @@ export default function Login() {
                                 id: data._id,
                                 isAdmin: data.isAdmin,
                             });
+                            redirect("/");
                         });
                 } else {
                     Swal.fire({
@@ -101,7 +102,7 @@ export default function Login() {
                 <Col xs md="6">
                     <h1 className="my-5 text-center">Login</h1>
                     <Form onSubmit={(e) => loginUser(e)}>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Email:</Form.Label>
                             <Form.Control
                                 type="email"
@@ -113,7 +114,7 @@ export default function Login() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Password:</Form.Label>
                             <Form.Control
                                 type="password"

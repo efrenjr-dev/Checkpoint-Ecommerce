@@ -13,14 +13,11 @@ export default function ViewOrder() {
     // const [update,setUpdate] = useState(0);
 
     useEffect(() => {
-        fetch(
-            `https://capstone2-ecommerce-api-nizn.onrender.com/users/order/${orderId}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            }
-        )
+        fetch(import.meta.env.VITE_API_URL + `/users/order/${orderId}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
             .then((res) => res.json())
             .then((foundOrder) => {
                 console.log("-foundOrder");

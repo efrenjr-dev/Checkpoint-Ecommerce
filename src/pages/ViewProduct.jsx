@@ -4,6 +4,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import UserContext from "../userContext";
 import { add, total, list } from "cart-localstorage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function ViewProduct() {
     const { productId } = useParams();
@@ -35,9 +37,7 @@ export default function ViewProduct() {
 		})*/
 
     useEffect(() => {
-        fetch(
-            `https://capstone2-ecommerce-api-nizn.onrender.com/products/${productId}`
-        )
+        fetch(import.meta.env.VITE_API_URL + `/products/${productId}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.message) {
@@ -137,7 +137,7 @@ export default function ViewProduct() {
                         </Card.Text>
                         {user.isAdmin === false ? (
                             <Form onSubmit={(e) => addToCart(e)}>
-                                <Form.Group>
+                                <Form.Group className="mb-3">
                                     <Form.Label>Quantity</Form.Label>
                                     <Form.Control
                                         type="number"
@@ -157,8 +157,11 @@ export default function ViewProduct() {
                                         className="btn"
                                         type="submit"
                                     >
-                                        <i class="fas fa-cart-plus"></i> Add to
-                                        cart
+                                        <FontAwesomeIcon
+                                            className={styles.fontawesomeicon}
+                                            icon={faCartPlus}
+                                        />{" "}
+                                        Add to cart
                                     </Button>
                                 ) : (
                                     <Button
@@ -166,8 +169,11 @@ export default function ViewProduct() {
                                         className="btn"
                                         disabled
                                     >
-                                        <i class="fas fa-cart-plus"></i> Add to
-                                        cart
+                                        <FontAwesomeIcon
+                                            className={styles.fontawesomeicon}
+                                            icon={faCartPlus}
+                                        />{" "}
+                                        Add to cart
                                     </Button>
                                 )}
                             </Form>
@@ -177,8 +183,11 @@ export default function ViewProduct() {
                                     className="btn btn-outline-danger"
                                     to="/login"
                                 >
-                                    <i class="fas fa-sign-in-alt"></i> Log in to
-                                    add to cart
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faSignInAlt}
+                                    />
+                                    Log in to add to cart
                                 </Link>
                             </>
                         )}

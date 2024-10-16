@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import Product from "../components/Product";
 // import UserContext from '../userContext'
 import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faClipboardCheck,
+    faListCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
     // const {user} = useContext(UserContext);
@@ -13,7 +18,7 @@ export default function Home() {
     useEffect(() => {
         setLoading(true);
 
-        fetch("https://capstone2-ecommerce-api-nizn.onrender.com/products/")
+        fetch(import.meta.env.VITE_API_URL + "/products/")
             .then((res) => res.json())
             .then((data) => {
                 setLoading(false);
@@ -42,7 +47,8 @@ export default function Home() {
     ) : (
         <Container>
             <h1 className="my-5 text-center">
-                <i class="fab fa-shopware"></i> Checkpoint
+                <FontAwesomeIcon icon={faClipboardCheck} />
+                Checkpoint
             </h1>
             <h2 className="my-5 text-center">Featured Products</h2>
             <Row xs={1} sm={2} lg={4}>

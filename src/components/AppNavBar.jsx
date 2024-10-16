@@ -3,6 +3,20 @@ import { Navbar, Nav, NavDropdown, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { list } from "cart-localstorage";
 import UserContext from "../userContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from "./AppNavBar.module.css";
+import {
+    faClipboardCheck,
+    faStore,
+    faTags,
+    faFolderPlus,
+    faFileInvoice,
+    faSignOutAlt,
+    faShoppingCart,
+    faUserPlus,
+    faSignInAlt,
+    faTag,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function AppNavBar() {
     const { user } = useContext(UserContext);
@@ -11,67 +25,116 @@ export default function AppNavBar() {
     return (
         <Navbar bg="warning" expand="lg">
             <Navbar.Brand as={Link} to="/">
-                <i class="fab fa-shopware"></i> Checkpoint
+                <FontAwesomeIcon
+                    className={styles.fontawesomeicon}
+                    icon={faClipboardCheck}
+                />
+                Checkpoint
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="m1-auto">
+                <Nav className="ms-auto">
                     <Nav.Link as={Link} to="/">
-                        <i class="fas fa-store"></i> Home
+                        <FontAwesomeIcon
+                            className={styles.fontawesomeicon}
+                            icon={faStore}
+                        />
+                        Home
                     </Nav.Link>
                     {user.id ? (
                         user.isAdmin ? (
                             <>
                                 <NavDropdown title="Products">
                                     <NavDropdown.Item as={Link} to="/products">
-                                        <i class="fas fa-tags"></i> View
-                                        Products
+                                        <FontAwesomeIcon
+                                            className={styles.fontawesomeicon}
+                                            icon={faTags}
+                                        />
+                                        View Products
                                     </NavDropdown.Item>
                                     <NavDropdown.Item
                                         as={Link}
                                         to="/addproduct"
                                     >
-                                        <i class="fas fa-folder-plus"></i> Add
-                                        Product
+                                        <FontAwesomeIcon
+                                            className={styles.fontawesomeicon}
+                                            icon={faFolderPlus}
+                                        />
+                                        Add Product
                                     </NavDropdown.Item>
                                 </NavDropdown>
                                 <Nav.Link as={Link} to="/orders">
-                                    <i class="fas fa-file-invoice"></i> Orders
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faFileInvoice}
+                                    />
+                                    Orders
                                 </Nav.Link>
                                 <Nav.Link as={Link} to="/logout">
-                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faSignOutAlt}
+                                    />
+                                    Logout
                                 </Nav.Link>
                             </>
                         ) : (
                             <>
                                 <Nav.Link as={Link} to="/products">
-                                    <i class="fas fa-tags"></i> Products
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faTags}
+                                    />
+                                    Products
                                 </Nav.Link>
                                 <Nav.Link as={Link} to="/orders">
-                                    <i class="fas fa-file-invoice"></i> My
-                                    Orders
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faFileInvoice}
+                                    />
+                                    My Orders
                                 </Nav.Link>
                                 <Nav.Link as={Link} to="/cart">
-                                    <i class="fas fa-shopping-cart"></i> My Cart{" "}
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faShoppingCart}
+                                    />
+                                    My Cart{" "}
                                     <Badge pill variant="danger">
                                         {list().length}
                                     </Badge>
                                 </Nav.Link>
                                 <Nav.Link as={Link} to="/logout">
-                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faSignOutAlt}
+                                    />
+                                    Logout
                                 </Nav.Link>
                             </>
                         )
                     ) : (
                         <>
                             <Nav.Link as={Link} to="/products">
-                                <i class="fas fa-tags"></i> Products
+                                <FontAwesomeIcon
+                                    className={styles.fontawesomeicon}
+                                    icon={faTags}
+                                />
+                                Products
                             </Nav.Link>
                             <Nav.Link as={Link} to="/register">
-                                <i class="fas fa-user-plus"></i> Register
+                                <FontAwesomeIcon
+                                    className={styles.fontawesomeicon}
+                                    icon={faUserPlus}
+                                />
+                                Register
                             </Nav.Link>
                             <Nav.Link as={Link} to="/login">
-                                <i class="fas fa-sign-in-alt"></i> Log In
+                                <FontAwesomeIcon
+                                    className={styles.fontawesomeicon}
+                                    icon={faSignInAlt}
+                                />
+                                Log In
                             </Nav.Link>
                         </>
                     )}

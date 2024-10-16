@@ -37,9 +37,7 @@ export default function UpdateProduct() {
         if (!user.isAdmin) {
             redirect("/login");
         }
-        fetch(
-            `https://capstone2-ecommerce-api-nizn.onrender.com/products/${productId}`
-        )
+        fetch(import.meta.env.VITE_API_URL + `/products/${productId}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.message) {
@@ -65,21 +63,18 @@ export default function UpdateProduct() {
 
         console.log(productId);
 
-        fetch(
-            `https://capstone2-ecommerce-api-nizn.onrender.com/products/${productId}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-                body: JSON.stringify({
-                    productName: productName,
-                    description: description,
-                    price: price,
-                }),
-            }
-        )
+        fetch(import.meta.env.VITE_API_URL + `/products/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+                productName: productName,
+                description: description,
+                price: price,
+            }),
+        })
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -117,7 +112,7 @@ export default function UpdateProduct() {
                 <Col xs md="6">
                     <h1 className="my-5 text-center">Update Product</h1>
                     <Form onSubmit={(e) => updateProduct(e)}>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Product Name:</Form.Label>
                             <Form.Control
                                 type="text"
@@ -129,7 +124,7 @@ export default function UpdateProduct() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Description:</Form.Label>
                             <Form.Control
                                 type="text"
@@ -141,7 +136,7 @@ export default function UpdateProduct() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Price (PHP):</Form.Label>
                             <Form.Control
                                 type="number"

@@ -45,7 +45,7 @@ export default function Register() {
         console.log(password);
         console.log(confirmPassword);
 
-        fetch("https://capstone2-ecommerce-api-nizn.onrender.com/users/", {
+        fetch(import.meta.env.VITE_API_URL + "/users/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -92,7 +92,7 @@ export default function Register() {
                 <Col xs md="6">
                     <h1 className="my-5 text-center">Register</h1>
                     <Form onSubmit={(e) => registerUser(e)}>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>First Name:</Form.Label>
                             <Form.Control
                                 type="text"
@@ -104,7 +104,7 @@ export default function Register() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Last Name:</Form.Label>
                             <Form.Control
                                 type="text"
@@ -116,7 +116,7 @@ export default function Register() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Email:</Form.Label>
                             <Form.Control
                                 type="email"
@@ -128,7 +128,7 @@ export default function Register() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Mobile No:</Form.Label>
                             <Form.Control
                                 type="number"
@@ -140,7 +140,7 @@ export default function Register() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Password:</Form.Label>
                             <Form.Control
                                 type="password"
@@ -152,7 +152,7 @@ export default function Register() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Confirm Password:</Form.Label>
                             <Form.Control
                                 type="password"

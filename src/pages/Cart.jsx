@@ -11,6 +11,14 @@ import {
     total,
 } from "cart-localstorage";
 import { redirect, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faFrown,
+    faMinus,
+    faPlus,
+    faSignInAlt,
+    faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Cart() {
     const { user } = useContext(UserContext);
@@ -71,7 +79,10 @@ export default function Cart() {
                                         addOne(product.id);
                                     }}
                                 >
-                                    <i class="fas fa-plus"></i>
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faPlus}
+                                    />
                                 </Button>
                                 <Button
                                     variant="outline-secondary"
@@ -80,7 +91,10 @@ export default function Cart() {
                                         removeOne(product.id, product.quantity);
                                     }}
                                 >
-                                    <i class="fas fa-minus"></i>
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faMinus}
+                                    />
                                 </Button>
                             </td>
                             <td className="text-right">
@@ -98,7 +112,10 @@ export default function Cart() {
                                     }}
                                 >
                                     {/*<i class="fas fa-cart-arrow-down"></i>*/}
-                                    <i class="far fa-trash-alt"></i>
+                                    <FontAwesomeIcon
+                                        className={styles.fontawesomeicon}
+                                        icon={faTrashAlt}
+                                    />
                                 </Button>
                             </td>
                         </tr>
@@ -159,22 +176,19 @@ export default function Cart() {
                 console.log("-confirmed");
                 setLoading(true);
 
-                fetch(
-                    "https://capstone2-ecommerce-api-nizn.onrender.com/users/createOrder",
-                    {
-                        method: "POST",
-                        headers: {
-                            Authorization: `Bearer ${localStorage.getItem(
-                                "token"
-                            )}`,
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            products: list(),
-                            totalAmount: total(),
-                        }),
-                    }
-                )
+                fetch(import.meta.env.VITE_API_URL + "/users/createOrder", {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        products: list(),
+                        totalAmount: total(),
+                    }),
+                })
                     .then((res) => res.json())
                     .then((data) => {
                         console.log("-createOrder");
@@ -248,12 +262,19 @@ export default function Cart() {
                             checkout();
                         }}
                     >
-                        <i class="fas fa-sign-in-alt"></i> Check Out
+                        <FontAwesomeIcon
+                            className={styles.fontawesomeicon}
+                            icon={faSignInAlt}
+                        />
+                        Check Out
                     </Button>
                 </>
             ) : (
                 <h3 className="text-center">
-                    <i class="far fa-frown"></i>
+                    <FontAwesomeIcon
+                        className={styles.fontawesomeicon}
+                        icon={faFrown}
+                    />
                 </h3>
             )}
         </>

@@ -36,7 +36,7 @@ export default function Products() {
     useEffect(() => {
         if (!user.isAdmin) {
             setLoading(true);
-            fetch("https://capstone2-ecommerce-api-nizn.onrender.com/products/")
+            fetch(import.meta.env.VITE_API_URL + "/products/")
                 .then((res) => res.json())
                 .then((data) => {
                     setLoading(false);
@@ -62,16 +62,11 @@ export default function Products() {
             // console.log('-admin, view all products');
             setLoading(true);
 
-            fetch(
-                "https://capstone2-ecommerce-api-nizn.onrender.com/products/all",
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            )
+            fetch(import.meta.env.VITE_API_URL + "/products/all", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
                 .then((res) => res.json())
                 .then((data) => {
                     setLoading(false);
@@ -139,15 +134,12 @@ export default function Products() {
     function disable(productId) {
         console.log(`disable! ${productId}`);
 
-        fetch(
-            `https://capstone2-ecommerce-api-nizn.onrender.com/products/archive/${productId}`,
-            {
-                method: "PUT",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            }
-        )
+        fetch(import.meta.env.VITE_API_URL + `/products/archive/${productId}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -183,7 +175,7 @@ export default function Products() {
         console.log(`enable! ${productId}`);
 
         fetch(
-            `https://capstone2-ecommerce-api-nizn.onrender.com/products/activate/${productId}`,
+            import.meta.env.VITE_API_URL + `/products/activate/${productId}`,
             {
                 method: "PUT",
                 headers: {
